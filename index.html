@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>শিখি – NCTB Interactive Learning</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Baloo+Da+2:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <div class="logo" onclick="showPage('home')">
+      <span class="logo-icon">📚</span>
+      <span class="logo-text">শিখি</span>
+      <span class="logo-sub">NCTB</span>
+    </div>
+    <div class="search-wrap">
+      <input type="text" id="searchInput" class="search-box" placeholder="🔍 যেকোনো টপিক খোঁজো..." oninput="liveSearch(this.value)" onfocus="showSearchDropdown()" />
+      <div id="searchDropdown" class="search-dropdown"></div>
+    </div>
+    <div class="nav-links">
+      <a onclick="showPage('home')" id="navHome" class="nav-active">🏠 হোম</a>
+      <a onclick="showPage('classes')" id="navClasses">📖 ক্লাস</a>
+      <a onclick="showPage('progress')" id="navProgress">🏆 প্রগ্রেস</a>
+    </div>
+    <button class="lang-btn" id="langBtn" onclick="toggleLang()">EN</button>
+  </div>
+</nav>
+
+<!-- ===== HOME PAGE ===== -->
+<div id="page-home" class="page active">
+
+  <section class="hero">
+    <div class="hero-bg-shapes">
+      <div class="shape s1"></div><div class="shape s2"></div><div class="shape s3"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">🇧🇩 NCTB অনুমোদিত পাঠ্যক্রম • ১ম–১০ম শ্রেণি</div>
+      <h1 class="hero-title">পড়া হোক <span class="highlight">মজার</span><br/>শেখা হোক <span class="highlight2">সহজ</span></h1>
+      <p class="hero-sub">Animation, গেম ও Quiz দিয়ে ক্লাস ১ থেকে ১০ পর্যন্ত NCTB পাঠ্যবই শেখো!</p>
+      <div class="hero-btns">
+        <button class="btn-primary pulse-btn" onclick="showPage('classes')">🚀 এখনই শুরু করো</button>
+        <button class="btn-outline" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">✨ কীভাবে কাজ করে?</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">১০</span><span class="stat-label">শ্রেণি</span></div>
+        <div class="vdiv"></div>
+        <div class="stat"><span class="stat-num">৮+</span><span class="stat-label">বিষয়</span></div>
+        <div class="vdiv"></div>
+        <div class="stat"><span class="stat-num">১০০+</span><span class="stat-label">টপিক</span></div>
+        <div class="vdiv"></div>
+        <div class="stat"><span class="stat-num">১০০%</span><span class="stat-label">বিনামূল্যে</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="book-stack">
+        <div class="fc fc1">🔢 গণিত</div>
+        <div class="fc fc2">🌿 বিজ্ঞান</div>
+        <div class="fc fc3">🗺️ ভূগোল</div>
+        <div class="book-3d"><div class="book-face">📚<br/>শিখি</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features-sec" id="features">
+    <h2 class="sec-title">কীভাবে শিখবো?</h2>
+    <div class="features-grid">
+      <div class="feat-card" data-delay="0"><div class="feat-icon bounce">🎬</div><h3>Animation দেখো</h3><p>প্রতিটি কঠিন টপিক সহজ ধাপে ধাপে Animation-এ বোঝানো হয়।</p></div>
+      <div class="feat-card" data-delay="100"><div class="feat-icon spin">🎮</div><h3>গেম খেলে শেখো</h3><p>Quiz ও মজার গেমে অংশ নাও — শিখতে শিখতে মজা পাবে!</p></div>
+      <div class="feat-card" data-delay="200"><div class="feat-icon pulse-i">📊</div><h3>প্রগ্রেস দেখো</h3><p>কোন বিষয়ে ভালো, কোথায় আরো পড়তে হবে — সব দেখো।</p></div>
+      <div class="feat-card" data-delay="300"><div class="feat-icon">🔍</div><h3>খুঁজে পাও</h3><p>Search বারে লিখলেই যেকোনো টপিক মুহূর্তেই পাওয়া যায়।</p></div>
+    </div>
+  </section>
+
+  <!-- Class Quick Select -->
+  <section class="class-sec">
+    <h2 class="sec-title">ক্লাস বেছে নাও</h2>
+    <div class="class-tabs">
+      <button class="ctab active" onclick="filterClassRow('primary',this)">🌸 প্রাথমিক (১–৫)</button>
+      <button class="ctab" onclick="filterClassRow('secondary',this)">🚀 মাধ্যমিক (৬–১০)</button>
+    </div>
+    <div id="classRow" class="class-row">
+      <div class="cpill primary" onclick="quickJump(1)"><span class="cpill-num">১ম</span><span class="cpill-sub">৪ বিষয়</span></div>
+      <div class="cpill primary" onclick="quickJump(2)"><span class="cpill-num">২য়</span><span class="cpill-sub">৪ বিষয়</span></div>
+      <div class="cpill primary" onclick="quickJump(3)"><span class="cpill-num">৩য়</span><span class="cpill-sub">৫ বিষয়</span></div>
+      <div class="cpill primary" onclick="quickJump(4)"><span class="cpill-num">৪র্থ</span><span class="cpill-sub">৫ বিষয়</span></div>
+      <div class="cpill primary" onclick="quickJump(5)"><span class="cpill-num">৫ম</span><span class="cpill-sub">৬ বিষয়</span></div>
+      <div class="cpill secondary hidden" onclick="quickJump(6)"><span class="cpill-num">৬ষ্ঠ</span><span class="cpill-sub">৭ বিষয়</span></div>
+      <div class="cpill secondary hidden" onclick="quickJump(7)"><span class="cpill-num">৭ম</span><span class="cpill-sub">৭ বিষয়</span></div>
+      <div class="cpill secondary hidden" onclick="quickJump(8)"><span class="cpill-num">৮ম</span><span class="cpill-sub">৭ বিষয়</span></div>
+      <div class="cpill secondary hidden" onclick="quickJump(9)"><span class="cpill-num">৯ম</span><span class="cpill-sub">৮ বিষয়</span></div>
+      <div class="cpill secondary hidden" onclick="quickJump(10)"><span class="cpill-num">১০ম</span><span class="cpill-sub">৮ বিষয়</span></div>
+    </div>
+  </section>
+
+  <!-- Subject Cards -->
+  <section class="subj-sec">
+    <h2 class="sec-title">বিষয় অনুযায়ী শেখো</h2>
+    <div class="subj-grid">
+      <div class="scard math"    onclick="openSubject('math')"    ><span class="scard-em">🔢</span><h3>গণিত</h3><p>সংখ্যা → বীজগণিত → ক্যালকুলাস</p></div>
+      <div class="scard science" onclick="openSubject('science')" ><span class="scard-em">🔬</span><h3>বিজ্ঞান</h3><p>পদার্থ, রসায়ন, জীববিদ্যা</p></div>
+      <div class="scard bangla"  onclick="openSubject('bangla')"  ><span class="scard-em">অ</span><h3>বাংলা</h3><p>বর্ণমালা → সাহিত্য → ব্যাকরণ</p></div>
+      <div class="scard english" onclick="openSubject('english')" ><span class="scard-em">🔤</span><h3>English</h3><p>Alphabet → Grammar → Essay</p></div>
+      <div class="scard physics" onclick="openSubject('physics')" ><span class="scard-em">⚡</span><h3>পদার্থবিজ্ঞান</h3><p>গতি, বল, তরঙ্গ, আলো</p></div>
+      <div class="scard chem"    onclick="openSubject('chemistry')"><span class="scard-em">🧪</span><h3>রসায়ন</h3><p>মৌল, বিক্রিয়া, জৈব রসায়ন</p></div>
+      <div class="scard bio"     onclick="openSubject('biology')" ><span class="scard-em">🧬</span><h3>জীববিজ্ঞান</h3><p>কোষ, বিবর্তন, মানবদেহ</p></div>
+      <div class="scard history" onclick="openSubject('history')" ><span class="scard-em">🏛️</span><h3>ইতিহাস</h3><p>প্রাচীন কাল → মুক্তিযুদ্ধ</p></div>
+      <div class="scard geo"     onclick="openSubject('geo')"     ><span class="scard-em">🌍</span><h3>ভূগোল</h3><p>বাংলাদেশ ও বিশ্ব ভূগোল</p></div>
+      <div class="scard social"  onclick="openSubject('social')"  ><span class="scard-em">🏘️</span><h3>সমাজবিজ্ঞান</h3><p>পরিবার, সমাজ, রাষ্ট্র</p></div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== CLASSES PAGE ===== -->
+<div id="page-classes" class="page">
+  <div class="page-hdr">
+    <h2>📚 ক্লাস বেছে নাও</h2>
+    <p>তোমার শ্রেণি সিলেক্ট করো এবং বিষয় দেখো</p>
+  </div>
+  <div class="classes-wrap">
+    <div class="cs-label">🌸 প্রাথমিক (Primary) — ১ম থেকে ৫ম শ্রেণি</div>
+    <div class="cg" id="primaryGrid"></div>
+    <div class="cs-label">🚀 মাধ্যমিক (Secondary) — ৬ষ্ঠ থেকে ১০ম শ্রেণি</div>
+    <div class="cg" id="secondaryGrid"></div>
+  </div>
+</div>
+
+<!-- ===== CLASS DETAIL PAGE ===== -->
+<div id="page-classdetail" class="page">
+  <div class="page-hdr">
+    <button class="back-btn" onclick="goBack()">← পেছনে</button>
+    <h2 id="classDetailTitle"></h2>
+    <p id="classDetailSub">বিষয় বেছে নাও</p>
+  </div>
+  <div class="subj-filter-wrap" id="subjectFilterWrap"></div>
+  <div id="classTopicsContainer" class="topics-container"></div>
+</div>
+
+<!-- ===== SUBJECT PAGE ===== -->
+<div id="page-subject" class="page">
+  <div class="page-hdr">
+    <button class="back-btn" onclick="goBack()">← পেছনে</button>
+    <h2 id="subjectTitle">বিষয়</h2>
+    <p id="subjectDesc"></p>
+  </div>
+  <div id="topicsContainer" class="topics-container"></div>
+</div>
+
+<!-- ===== TOPIC VIEWER ===== -->
+<div id="page-topic" class="page">
+  <div class="topic-nav-bar">
+    <button class="back-btn" onclick="goBack()">← পেছনে</button>
+    <div class="tab-row">
+      <button class="tab-btn active" onclick="switchTab('learn')" id="tabLearn">📖 পড়ো</button>
+      <button class="tab-btn" onclick="switchTab('animate')" id="tabAnimate">🎬 Animation</button>
+      <button class="tab-btn" onclick="switchTab('quiz')" id="tabQuiz">🎮 Quiz</button>
+    </div>
+  </div>
+
+  <!-- LEARN -->
+  <div id="tab-learn" class="tab-pane active">
+    <div class="learn-grid">
+      <div class="learn-main">
+        <h2 id="topicTitle" class="topic-heading"></h2>
+        <div id="topicBody" class="topic-body"></div>
+        <div class="next-topic-row" id="nextTopicRow"></div>
+      </div>
+      <div class="learn-sidebar">
+        <div class="sidebar-box">
+          <h4>📌 মূল বিষয়বস্তু</h4>
+          <ul id="keyPoints"></ul>
+        </div>
+        <button class="btn-primary full-w" onclick="switchTab('animate')">🎬 Animation দেখো</button>
+        <button class="btn-outline full-w mt8" onclick="switchTab('quiz')">🎮 Quiz দাও</button>
+        <div class="difficulty-wrap" id="difficultyWrap"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANIMATE -->
+  <div id="tab-animate" class="tab-pane">
+    <div class="anim-stage">
+      <div class="anim-top">
+        <button class="anim-btn" id="prevStep" onclick="animStep(-1)">◀ আগে</button>
+        <div class="step-dots" id="stepDots"></div>
+        <button class="anim-btn" id="nextStep" onclick="animStep(1)">পরে ▶</button>
+      </div>
+      <div class="anim-scene" id="animScene"></div>
+      <div class="anim-caption" id="animCaption"></div>
+      <div class="anim-bottom">
+        <button class="btn-outline sm" onclick="animStep(-1)">◀</button>
+        <span id="stepCounter" class="step-ctr">ধাপ ১ / ৫</span>
+        <button class="btn-primary sm" onclick="switchTab('quiz')">Quiz দাও →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="tab-quiz" class="tab-pane">
+    <div class="quiz-wrap" id="quizContainer">
+      <div class="quiz-top-bar">
+        <div class="qprog-bar"><div id="quizProgFill"></div></div>
+        <span id="quizScoreDisplay">স্কোর: ০</span>
+      </div>
+      <div id="quizContent"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PROGRESS PAGE ===== -->
+<div id="page-progress" class="page">
+  <div class="page-hdr">
+    <h2>🏆 তোমার প্রগ্রেস</h2>
+    <p>তুমি এখন পর্যন্ত কতটুকু শিখেছো</p>
+  </div>
+  <div class="prog-wrap">
+    <div class="prog-summary" id="progSummary"></div>
+    <h3 class="prog-sec-title">বিষয় অনুযায়ী প্রগ্রেস</h3>
+    <div id="subjectsProg"></div>
+    <h3 class="prog-sec-title">সাম্প্রতিক কার্যকলাপ</h3>
+    <div id="recentActivity"></div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="toast"></div>
+<!-- Overlay for search -->
+<div id="searchOverlay" class="search-overlay" onclick="closeSearch()"></div>
+
+<script src="data.js"></script>
+<script src="data_primary.js"></script>
+<script src="data_secondary.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
